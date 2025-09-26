@@ -12,8 +12,6 @@ class ProductRepository {
         Uri.parse('${dotenv.get('SERVER_URL')}/products'),
         headers: {"ngrok-skip-browser-warning": "true"});
 
-    print(result.statusCode);
-
     if (result.statusCode != 200) {
       throw Exception();
     }
@@ -23,8 +21,6 @@ class ProductRepository {
     final List<ProductModel> products = (response['data'] as List)
         .map((map) => ProductModel.fromMap(map))
         .toList();
-
-    print(products);
 
     return products;
   }

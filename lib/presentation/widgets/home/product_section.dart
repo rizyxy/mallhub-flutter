@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mallhub_flutter/data/model/product.dart';
 import 'package:mallhub_flutter/presentation/bloc/product_bloc/product_bloc.dart';
+import 'package:mallhub_flutter/presentation/screens/product_page.dart';
+import 'package:mallhub_flutter/presentation/widgets/product/product_catalog.dart';
 import 'package:mallhub_flutter/presentation/widgets/shared/item_card.dart';
 
 class ProductSection extends StatefulWidget {
@@ -31,7 +34,12 @@ class _ProductSectionState extends State<ProductSection> {
               "Product",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            Text("View More")
+            InkWell(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ProductPage()));
+                },
+                child: Text("View More"))
           ],
         ),
         SizedBox(
@@ -48,20 +56,9 @@ class _ProductSectionState extends State<ProductSection> {
           }
 
           if (state is ProductSuccess) {
-            return GridView(
-                shrinkWrap: true,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 20,
-                    crossAxisSpacing: 20,
-                    childAspectRatio: 0.7),
-                children: state.products
-                    .map((product) => ItemCard(
-                          itemName: product.name,
-                          itemInfo: "Rp ${product.price}",
-                          itemImage: product.productImages?.first,
-                        ))
-                    .toList());
+            return ProductCatalog(
+              products: state.products.take(4).toList(),
+            );
           }
 
           return Container();
