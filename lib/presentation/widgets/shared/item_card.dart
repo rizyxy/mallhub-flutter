@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 
 class ItemCard extends StatelessWidget {
-  const ItemCard({
-    super.key,
-  });
+  const ItemCard(
+      {super.key,
+      required this.itemName,
+      required this.itemInfo,
+      this.itemImage});
+
+  final String itemName;
+  final String itemInfo;
+  final String? itemImage;
 
   @override
   Widget build(BuildContext context) {
@@ -12,18 +18,19 @@ class ItemCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Expanded(
-              child: Container(
-            color: Colors.grey.shade200,
+              child: Image.network(
+            itemImage ?? "",
+            fit: BoxFit.cover,
           )),
           SizedBox(
             height: 10,
           ),
           Text(
-            "Linen Shirt",
+            itemName,
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           Text(
-            "Rp 200.000",
+            itemInfo,
             style: TextStyle(fontSize: 15),
           )
         ],

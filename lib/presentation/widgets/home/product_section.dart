@@ -49,19 +49,19 @@ class _ProductSectionState extends State<ProductSection> {
 
           if (state is ProductSuccess) {
             return GridView(
-              shrinkWrap: true,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 20,
-                  crossAxisSpacing: 20,
-                  childAspectRatio: 0.7),
-              children: <Widget>[
-                ItemCard(),
-                ItemCard(),
-                ItemCard(),
-                ItemCard()
-              ],
-            );
+                shrinkWrap: true,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 20,
+                    crossAxisSpacing: 20,
+                    childAspectRatio: 0.7),
+                children: state.products
+                    .map((product) => ItemCard(
+                          itemName: product.name,
+                          itemInfo: "Rp ${product.price}",
+                          itemImage: product.productImages?.first,
+                        ))
+                    .toList());
           }
 
           return Container();
