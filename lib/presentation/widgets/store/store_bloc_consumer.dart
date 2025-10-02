@@ -48,6 +48,7 @@ class StoreBlocConsumer extends StatelessWidget {
             key: PageStorageKey<String>('storeGridScrollPosition'),
             isLoadingMore: true,
             isErrorOnLoadingMore: false,
+            stores: state.stores,
           );
         }
 
@@ -56,6 +57,7 @@ class StoreBlocConsumer extends StatelessWidget {
             key: PageStorageKey<String>('storeGridScrollPosition'),
             isLoadingMore: false,
             isErrorOnLoadingMore: true,
+            stores: state.stores,
           );
         }
 
@@ -73,6 +75,7 @@ class StoreBlocConsumer extends StatelessWidget {
                 key: PageStorageKey<String>('storeGridScrollPosition'),
                 isLoadingMore: false,
                 isErrorOnLoadingMore: false,
+                stores: state.stores,
               ));
         }
 

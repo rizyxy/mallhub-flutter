@@ -11,10 +11,31 @@ class StoreInitial extends StoreState {}
 
 class StoreLoading extends StoreState {}
 
-class StoreLoadingMore extends StoreState {}
+class StoreLoadingMore extends StoreState {
+  final List<StoreModel> stores;
 
-class StoreSuccess extends StoreState {}
+  const StoreLoadingMore({required this.stores});
+
+  @override
+  List<Object?> get props => [stores];
+}
+
+class StoreSuccess extends StoreState {
+  final List<StoreModel> stores;
+
+  const StoreSuccess({required this.stores});
+
+  @override
+  List<Object?> get props => [stores];
+}
 
 class StoreError extends StoreState {}
 
-class StoreErrorLoadingMore extends StoreState {}
+class StoreErrorLoadingMore extends StoreState {
+  final List<StoreModel> stores;
+
+  const StoreErrorLoadingMore({required this.stores});
+
+  @override
+  List<Object?> get props => [stores];
+}

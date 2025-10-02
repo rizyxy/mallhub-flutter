@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mallhub_flutter/data/model/store.dart';
 import 'package:mallhub_flutter/presentation/bloc/store_bloc/store_bloc.dart';
 import 'package:mallhub_flutter/presentation/widgets/shared/item_card.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,25 +8,16 @@ class StoreGrid extends StatelessWidget {
   StoreGrid(
       {super.key,
       required this.isLoadingMore,
-      required this.isErrorOnLoadingMore});
+      required this.isErrorOnLoadingMore,
+      required this.stores});
 
   final bool isLoadingMore;
   final bool isErrorOnLoadingMore;
-
-  final List<ItemCard> itemCards = [
-    ItemCard(itemName: "Zara", itemDescription: "Lantai 1"),
-    ItemCard(itemName: "Pull and Bear", itemDescription: "Lantai 1"),
-    ItemCard(itemName: "Zara", itemDescription: "Lantai 1"),
-    ItemCard(itemName: "Pull and Bear", itemDescription: "Lantai 1"),
-    ItemCard(itemName: "Zara", itemDescription: "Lantai 1"),
-    ItemCard(itemName: "Pull and Bear", itemDescription: "Lantai 1"),
-    ItemCard(itemName: "Zara", itemDescription: "Lantai 1"),
-    ItemCard(itemName: "Pull and Bear", itemDescription: "Lantai 1"),
-  ];
+  List<StoreModel> stores;
 
   @override
   Widget build(BuildContext context) {
-    int itemCount = itemCards.length;
+    int itemCount = stores.length;
 
     if (isLoadingMore) {
       itemCount = itemCount + 10;
@@ -41,11 +33,11 @@ class StoreGrid extends StatelessWidget {
           childAspectRatio: 0.7),
       itemCount: itemCount,
       itemBuilder: (context, index) {
-        if (isLoadingMore && index >= itemCards.length) {
+        if (isLoadingMore && index >= stores.length) {
           return Center(child: CircularProgressIndicator());
         }
 
-        if (isErrorOnLoadingMore && index >= itemCards.length) {
+        if (isErrorOnLoadingMore && index >= stores.length) {
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -62,7 +54,9 @@ class StoreGrid extends StatelessWidget {
           );
         }
 
-        return itemCards[index];
+        return ItemCard(
+            itemName: stores[index].name,
+            itemDescription: stores[index].floorName);
       },
     );
   }
