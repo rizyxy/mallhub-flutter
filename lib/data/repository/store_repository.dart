@@ -73,7 +73,7 @@ class StoreRepository {
     ];
 
     //Simulate API call
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
 
     storeDb.shuffle();
 
