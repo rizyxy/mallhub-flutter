@@ -72,12 +72,9 @@ class StoreBlocConsumer extends StatelessWidget {
         if (state is StoreSuccess) {
           return NotificationListener<ScrollNotification>(
               onNotification: (notification) {
-                if (notification is ScrollUpdateNotification) {
-                  const double overscrollThreshold = 100.0;
-
-                  if (notification.metrics.pixels >
-                      notification.metrics.maxScrollExtent +
-                          overscrollThreshold) {
+                if (notification is ScrollEndNotification) {
+                  if (notification.metrics.pixels >=
+                      notification.metrics.maxScrollExtent) {
                     if (state.storePaginated.nextCursor != null) {
                       context.read<StoreBloc>().add(FetchMoreStore());
                     } else {

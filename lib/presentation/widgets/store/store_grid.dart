@@ -20,7 +20,7 @@ class StoreGrid extends StatelessWidget {
     int itemCount = stores.length;
 
     if (isLoadingMore) {
-      itemCount = itemCount + 1;
+      itemCount = itemCount + 2;
     } else if (isErrorOnLoadingMore) {
       itemCount = itemCount + 1;
     }
