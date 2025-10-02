@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mallhub_flutter/data/model/store.dart';
+import 'package:mallhub_flutter/data/paginated/store_paginated.dart';
 import 'package:mallhub_flutter/data/repository/store_repository.dart';
 
 part 'store_event.dart';
@@ -14,27 +15,37 @@ class StoreBloc extends Bloc<StoreEvent, StoreState> {
       emit(StoreLoading());
 
       try {
-        List<StoreModel> stores = await _storeRepository.fetchStore();
+        StorePaginated storePaginated = await _storeRepository.fetchStore();
 
-        emit(StoreSuccess(stores: stores));
+        emit(StoreSuccess(storePaginated: storePaginated));
       } catch (e) {
-        emit(StoreError());
+        emit(StoreError(errorMessage: e.toString()));
       }
     });
 
     on<FetchMoreStore>((event, emit) async {
-      StoreSuccess prevState = (state as StoreSuccess);
+      if (!(state is StoreSuccess || state is StoreErrorLoadingMore)) {
+        return;
+      }
 
-      emit(StoreLoadingMore(stores: prevState.stores));
+      StoreInitialLoadPassed prevState = state as StoreInitialLoadPassed;
+
+      StorePaginated prevStorePaginatd = prevState.storePaginated;
+
+      emit(StoreLoadingMore(stores: prevStorePaginatd.data));
 
       try {
-        List<StoreModel> newStores = await _storeRepository.fetchStore();
+        StorePaginated newStorePaginated = await _storeRepository.fetchStore(
+            nextCursor: prevStorePaginatd.nextCursor);
 
-        List<StoreModel> updatedStores = [...prevState.stores, ...newStores];
+        StorePaginated updatedStorePaginated = StorePaginated(
+            data: [...prevStorePaginatd.data, ...newStorePaginated.data],
+            nextCursor: newStorePaginated.nextCursor);
 
-        emit(StoreSuccess(stores: updatedStores));
+        emit(StoreSuccess(storePaginated: updatedStorePaginated));
       } catch (e) {
-        emit(StoreErrorLoadingMore(stores: prevState.stores));
+        emit(StoreErrorLoadingMore(
+            storePaginated: prevStorePaginatd, errorMessage: e.toString()));
       }
     });
   }

@@ -11,15 +11,23 @@ class StoreBlocConsumer extends StatelessWidget {
     return BlocConsumer<StoreBloc, StoreState>(
       listener: (context, state) async {
         if (state is StoreError || state is StoreErrorLoadingMore) {
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text("An error has occured")));
+          String? errorMessage;
+
+          if (state is StoreError) {
+            errorMessage = state.errorMessage;
+          } else if (state is StoreErrorLoadingMore) {
+            errorMessage = state.errorMessage;
+          }
+
+          ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(errorMessage ?? "An error has occured")));
         }
       },
       builder: (context, state) {
         if (state is StoreLoading) {
-          return Center(
+          return const Center(
               child: Padding(
-            padding: const EdgeInsets.all(30),
+            padding: EdgeInsets.all(30),
             child: CircularProgressIndicator(),
           ));
         }
@@ -33,19 +41,19 @@ class StoreBlocConsumer extends StatelessWidget {
                 onTap: () {
                   context.read<StoreBloc>().add(FetchStore());
                 },
-                child: Icon(
+                child: const Icon(
                   Icons.restart_alt,
                   size: 30,
                 ),
               ),
-              Text("Tap to retry")
+              const Text("Tap to retry")
             ],
           );
         }
 
         if (state is StoreLoadingMore) {
           return StoreGrid(
-            key: PageStorageKey<String>('storeGridScrollPosition'),
+            key: const PageStorageKey<String>('storeGridScrollPosition'),
             isLoadingMore: true,
             isErrorOnLoadingMore: false,
             stores: state.stores,
@@ -54,32 +62,43 @@ class StoreBlocConsumer extends StatelessWidget {
 
         if (state is StoreErrorLoadingMore) {
           return StoreGrid(
-            key: PageStorageKey<String>('storeGridScrollPosition'),
+            key: const PageStorageKey<String>('storeGridScrollPosition'),
             isLoadingMore: false,
             isErrorOnLoadingMore: true,
-            stores: state.stores,
+            stores: state.storePaginated.data,
           );
         }
 
         if (state is StoreSuccess) {
           return NotificationListener<ScrollNotification>(
               onNotification: (notification) {
-                if (notification.metrics.pixels ==
-                    notification.metrics.maxScrollExtent) {
-                  context.read<StoreBloc>().add(FetchMoreStore());
+                if (notification is ScrollUpdateNotification) {
+                  const double overscrollThreshold = 100.0;
+
+                  if (notification.metrics.pixels >
+                      notification.metrics.maxScrollExtent +
+                          overscrollThreshold) {
+                    if (state.storePaginated.nextCursor != null) {
+                      context.read<StoreBloc>().add(FetchMoreStore());
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text("No more store to show")));
+                    }
+                    return true;
+                  }
                 }
 
                 return false;
               },
               child: StoreGrid(
-                key: PageStorageKey<String>('storeGridScrollPosition'),
+                key: const PageStorageKey<String>('storeGridScrollPosition'),
                 isLoadingMore: false,
                 isErrorOnLoadingMore: false,
-                stores: state.stores,
+                stores: state.storePaginated.data,
               ));
         }
 
-        return SizedBox.shrink();
+        return const SizedBox.shrink();
       },
     );
   }

@@ -9,7 +9,7 @@ void main(List<String> args) async {
 
   runApp(MultiBlocProvider(providers: <BlocProvider>[
     BlocProvider<StoreBloc>(create: (context) => StoreBloc()..add(FetchStore()))
-  ], child: MallHub()));
+  ], child: const MallHub()));
 }
 
 class MallHub extends StatelessWidget {
@@ -17,7 +17,7 @@ class MallHub extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: StorePage(),
     );
   }

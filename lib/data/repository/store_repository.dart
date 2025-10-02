@@ -1,82 +1,27 @@
-import 'package:mallhub_flutter/data/model/store.dart';
+import 'dart:convert';
+
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:mallhub_flutter/data/paginated/store_paginated.dart';
+import 'package:http/http.dart' as http;
 
 class StoreRepository {
-  Future<List<StoreModel>> fetchStore() async {
-    //Mock Data
-    List<StoreModel> storeDb = [
-      StoreModel(
-          id: 1,
-          name: 'Pull and Bear',
-          logoUrl: 'www.google.com',
-          floorId: 1,
-          floorName: '1'),
-      StoreModel(
-          id: 1,
-          name: 'Pull and Bear',
-          logoUrl: 'www.google.com',
-          floorId: 1,
-          floorName: '1'),
-      StoreModel(
-          id: 1,
-          name: 'Pull and Bear',
-          logoUrl: 'www.google.com',
-          floorId: 1,
-          floorName: '1'),
-      StoreModel(
-          id: 1,
-          name: 'Pull and Bear',
-          logoUrl: 'www.google.com',
-          floorId: 1,
-          floorName: '1'),
-      StoreModel(
-          id: 1,
-          name: 'Pull and Bear',
-          logoUrl: 'www.google.com',
-          floorId: 1,
-          floorName: '1'),
-      StoreModel(
-          id: 1,
-          name: 'Pull and Bear',
-          logoUrl: 'www.google.com',
-          floorId: 1,
-          floorName: '1'),
-      StoreModel(
-          id: 1,
-          name: 'Pull and Bear',
-          logoUrl: 'www.google.com',
-          floorId: 1,
-          floorName: '1'),
-      StoreModel(
-          id: 1,
-          name: 'Pull and Bear',
-          logoUrl: 'www.google.com',
-          floorId: 1,
-          floorName: '1'),
-      StoreModel(
-          id: 1,
-          name: 'Pull and Bear',
-          logoUrl: 'www.google.com',
-          floorId: 1,
-          floorName: '1'),
-      StoreModel(
-          id: 1,
-          name: 'Pull and Bear',
-          logoUrl: 'www.google.com',
-          floorId: 1,
-          floorName: '1'),
-      StoreModel(
-          id: 1,
-          name: 'Pull and Bear',
-          logoUrl: 'www.google.com',
-          floorId: 1,
-          floorName: '1'),
-    ];
+  Future<StorePaginated> fetchStore({String? nextCursor}) async {
+    Uri uri = Uri.parse("${dotenv.get('SERVER_URL')}/stores");
 
-    //Simulate API call
-    await Future.delayed(Duration(seconds: 2));
+    if (nextCursor != null) {
+      uri = uri.replace(queryParameters: {'cursor': nextCursor});
+    }
 
-    storeDb.shuffle();
+    final response = await http.get(uri);
 
-    return storeDb.getRange(0, 8).toList();
+    if (response.statusCode != 200) {
+      throw Exception(response.statusCode.toString());
+    }
+
+    final decodedResponse = json.decode(response.body);
+
+    StorePaginated storePaginated = StorePaginated.fromMap(decodedResponse);
+
+    return storePaginated;
   }
 }

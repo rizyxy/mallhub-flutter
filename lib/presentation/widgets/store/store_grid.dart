@@ -5,7 +5,7 @@ import 'package:mallhub_flutter/presentation/widgets/shared/item_card.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class StoreGrid extends StatelessWidget {
-  StoreGrid(
+  const StoreGrid(
       {super.key,
       required this.isLoadingMore,
       required this.isErrorOnLoadingMore,
@@ -13,20 +13,21 @@ class StoreGrid extends StatelessWidget {
 
   final bool isLoadingMore;
   final bool isErrorOnLoadingMore;
-  List<StoreModel> stores;
+  final List<StoreModel> stores;
 
   @override
   Widget build(BuildContext context) {
     int itemCount = stores.length;
 
     if (isLoadingMore) {
-      itemCount = itemCount + 10;
+      itemCount = itemCount + 1;
     } else if (isErrorOnLoadingMore) {
       itemCount = itemCount + 1;
     }
 
     return GridView.builder(
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      physics: const BouncingScrollPhysics(),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           mainAxisSpacing: 20,
           crossAxisSpacing: 20,
@@ -34,7 +35,7 @@ class StoreGrid extends StatelessWidget {
       itemCount: itemCount,
       itemBuilder: (context, index) {
         if (isLoadingMore && index >= stores.length) {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         }
 
         if (isErrorOnLoadingMore && index >= stores.length) {
@@ -46,10 +47,10 @@ class StoreGrid extends StatelessWidget {
                   onTap: () {
                     context.read<StoreBloc>().add(FetchMoreStore());
                   },
-                  child: Icon(
+                  child: const Icon(
                     Icons.restart_alt,
                   )),
-              Text("Tap to retry")
+              const Text("Tap to retry")
             ],
           );
         }
