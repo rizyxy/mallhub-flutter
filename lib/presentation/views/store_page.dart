@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mallhub_flutter/presentation/widgets/store/store_bloc_consumer.dart';
 import 'package:mallhub_flutter/presentation/widgets/store/store_grid.dart';
 
 class StorePage extends StatelessWidget {
@@ -20,7 +21,7 @@ class StorePage extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            Expanded(child: StoreGrid())
+            Expanded(child: StoreBlocConsumer())
           ],
         ),
       )),
