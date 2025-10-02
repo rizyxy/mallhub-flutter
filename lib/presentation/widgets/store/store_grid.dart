@@ -20,12 +20,13 @@ class StoreGrid extends StatelessWidget {
     int itemCount = stores.length;
 
     if (isLoadingMore) {
-      itemCount = itemCount + 10;
+      itemCount = itemCount + 2;
     } else if (isErrorOnLoadingMore) {
       itemCount = itemCount + 1;
     }
 
     return GridView.builder(
+      physics: const BouncingScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           mainAxisSpacing: 20,

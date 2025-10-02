@@ -11,8 +11,16 @@ class StoreBlocConsumer extends StatelessWidget {
     return BlocConsumer<StoreBloc, StoreState>(
       listener: (context, state) async {
         if (state is StoreError || state is StoreErrorLoadingMore) {
+          String? errorMessage;
+
+          if (state is StoreError) {
+            errorMessage = state.errorMessage;
+          } else if (state is StoreErrorLoadingMore) {
+            errorMessage = state.errorMessage;
+          }
+
           ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text("An error has occured")));
+              SnackBar(content: Text(errorMessage ?? "An error has occured")));
         }
       },
       builder: (context, state) {
@@ -57,16 +65,24 @@ class StoreBlocConsumer extends StatelessWidget {
             key: const PageStorageKey<String>('storeGridScrollPosition'),
             isLoadingMore: false,
             isErrorOnLoadingMore: true,
-            stores: state.stores,
+            stores: state.storePaginated.data,
           );
         }
 
         if (state is StoreSuccess) {
           return NotificationListener<ScrollNotification>(
               onNotification: (notification) {
-                if (notification.metrics.pixels ==
-                    notification.metrics.maxScrollExtent) {
-                  context.read<StoreBloc>().add(FetchMoreStore());
+                if (notification is ScrollEndNotification) {
+                  if (notification.metrics.pixels >=
+                      notification.metrics.maxScrollExtent) {
+                    if (state.storePaginated.nextCursor != null) {
+                      context.read<StoreBloc>().add(FetchMoreStore());
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text("No more store to show")));
+                    }
+                    return true;
+                  }
                 }
 
                 return false;
@@ -75,7 +91,7 @@ class StoreBlocConsumer extends StatelessWidget {
                 key: const PageStorageKey<String>('storeGridScrollPosition'),
                 isLoadingMore: false,
                 isErrorOnLoadingMore: false,
-                stores: state.stores,
+                stores: state.storePaginated.data,
               ));
         }
 
