@@ -26,7 +26,7 @@ class ProductPaginated {
   factory ProductPaginated.fromMap(Map<String, dynamic> map) {
     return ProductPaginated(
       data: List<ProductModel>.from(
-        (map['data'] as List<Map<String, dynamic>>).map<ProductModel>(
+        (map['data'] as List).map<ProductModel>(
           (x) => ProductModel.fromMap(x),
         ),
       ),

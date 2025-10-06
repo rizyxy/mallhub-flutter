@@ -9,12 +9,46 @@ sealed class ProductState extends Equatable {
 
 class ProductInitial extends ProductState {}
 
+abstract class ProductInitialLoadPassed extends ProductState {
+  final ProductPaginated productPaginated;
+
+  const ProductInitialLoadPassed({required this.productPaginated});
+
+  @override
+  List<Object?> get props => [productPaginated];
+}
+
 class ProductLoading extends ProductState {}
 
-class ProductLoadingMore extends ProductState {}
+class ProductLoadingMore extends ProductState {
+  final List<ProductModel> products;
 
-class ProductSuccess extends ProductState {}
+  const ProductLoadingMore({required this.products});
 
-class ProductError extends ProductState {}
+  @override
+  List<Object?> get props => [products];
+}
 
-class ProductErrorLoadingMore extends ProductState {}
+class ProductSuccess extends ProductInitialLoadPassed {
+  ProductSuccess({required super.productPaginated});
+
+  @override
+  List<Object?> get props => [productPaginated];
+}
+
+class ProductError extends ProductState {
+  final String? errorMessage;
+
+  const ProductError({this.errorMessage});
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [errorMessage];
+}
+
+class ProductErrorLoadingMore extends ProductInitialLoadPassed {
+  ProductErrorLoadingMore({required super.productPaginated});
+
+  @override
+  List<Object?> get props => [productPaginated];
+}

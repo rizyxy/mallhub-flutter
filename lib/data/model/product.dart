@@ -46,12 +46,12 @@ class ProductModel {
       id: map['id'] as int,
       name: map['name'] as String,
       description: map['description'] as String,
-      price: map['price'] as double,
+      price: (map['price'] as int).toDouble(),
       storeId: map['store']['id'] as int,
       storeName: map['store']['name'] as String,
-      productImages: (map['product_images'] as List<Map<String, dynamic>>)
-          .map((img) => img['url'])
-          .toList() as List<String>,
+      productImages: (map['product_images'] as List)
+          .map((img) => (img['url'] as String))
+          .toList(),
     );
   }
 

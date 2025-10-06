@@ -11,8 +11,8 @@ class ProductBlocConsumer extends StatelessWidget {
     return BlocConsumer<ProductBloc, ProductState>(
       listener: (context, state) {
         if (state is ProductError) {
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text("An error has occured")));
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(state.errorMessage ?? "An error has occured")));
         }
       },
       builder: (context, state) {
@@ -45,16 +45,20 @@ class ProductBlocConsumer extends StatelessWidget {
 
         if (state is ProductLoadingMore) {
           return ProductGrid(
-              key: PageStorageKey<String>('productGridScrollPosition'),
-              isLoadingMore: true,
-              isErrorOnLoadingMore: false);
+            key: PageStorageKey<String>('productGridScrollPosition'),
+            isLoadingMore: true,
+            isErrorOnLoadingMore: false,
+            products: state.products,
+          );
         }
 
         if (state is ProductErrorLoadingMore) {
           return ProductGrid(
-              key: PageStorageKey<String>('productGridScrollPosition'),
-              isLoadingMore: false,
-              isErrorOnLoadingMore: true);
+            key: PageStorageKey<String>('productGridScrollPosition'),
+            isLoadingMore: false,
+            isErrorOnLoadingMore: true,
+            products: state.productPaginated.data,
+          );
         }
 
         if (state is ProductSuccess) {
@@ -63,7 +67,14 @@ class ProductBlocConsumer extends StatelessWidget {
               if (notification is ScrollEndNotification &&
                   notification.metrics.pixels >=
                       notification.metrics.maxScrollExtent) {
-                context.read<ProductBloc>().add(FetchMoreProduct());
+                if (state.productPaginated.nextCursor != null) {
+                  context.read<ProductBloc>().add(FetchMoreProduct());
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("No more store to show")));
+                }
+
+                return true;
               }
 
               return false;
@@ -72,6 +83,7 @@ class ProductBlocConsumer extends StatelessWidget {
               key: PageStorageKey<String>('productGridScrollPosition'),
               isLoadingMore: false,
               isErrorOnLoadingMore: false,
+              products: state.productPaginated.data,
             ),
           );
         }
