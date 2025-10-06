@@ -10,9 +10,17 @@ class ProductBlocConsumer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<ProductBloc, ProductState>(
       listener: (context, state) {
-        if (state is ProductError) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text(state.errorMessage ?? "An error has occured")));
+        if (state is ProductError || state is ProductErrorLoadingMore) {
+          String? errorMessage;
+
+          if (state is ProductError) {
+            errorMessage = state.errorMessage;
+          } else if (state is ProductErrorLoadingMore) {
+            errorMessage = state.errorMessage;
+          }
+
+          ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(errorMessage ?? "An error has occured")));
         }
       },
       builder: (context, state) {

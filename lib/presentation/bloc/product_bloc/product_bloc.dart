@@ -45,7 +45,9 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
 
         emit(ProductSuccess(productPaginated: updatedProductPaginated));
       } catch (e) {
-        emit(ProductErrorLoadingMore(productPaginated: prevProductPaginated));
+        emit(ProductErrorLoadingMore(
+            productPaginated: prevProductPaginated,
+            errorMessage: e.toString()));
       }
     });
   }

@@ -47,8 +47,9 @@ class ProductError extends ProductState {
 }
 
 class ProductErrorLoadingMore extends ProductInitialLoadPassed {
-  ProductErrorLoadingMore({required super.productPaginated});
+  final String? errorMessage;
+  ProductErrorLoadingMore({required super.productPaginated, this.errorMessage});
 
   @override
-  List<Object?> get props => [productPaginated];
+  List<Object?> get props => [productPaginated, errorMessage];
 }
