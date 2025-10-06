@@ -30,7 +30,7 @@ class ProductLoadingMore extends ProductState {
 }
 
 class ProductSuccess extends ProductInitialLoadPassed {
-  ProductSuccess({required super.productPaginated});
+  const ProductSuccess({required super.productPaginated});
 
   @override
   List<Object?> get props => [productPaginated];
@@ -42,13 +42,13 @@ class ProductError extends ProductState {
   const ProductError({this.errorMessage});
 
   @override
-  // TODO: implement props
   List<Object?> get props => [errorMessage];
 }
 
 class ProductErrorLoadingMore extends ProductInitialLoadPassed {
   final String? errorMessage;
-  ProductErrorLoadingMore({required super.productPaginated, this.errorMessage});
+  const ProductErrorLoadingMore(
+      {required super.productPaginated, this.errorMessage});
 
   @override
   List<Object?> get props => [productPaginated, errorMessage];

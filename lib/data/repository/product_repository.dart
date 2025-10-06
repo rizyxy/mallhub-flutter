@@ -21,12 +21,8 @@ class ProductRepository {
 
     final decodedResponse = json.decode(response.body);
 
-    print(decodedResponse);
-
     ProductPaginated productPaginated =
         ProductPaginated.fromMap(decodedResponse);
-
-    print(productPaginated);
 
     return productPaginated;
   }

@@ -25,9 +25,9 @@ class ProductBlocConsumer extends StatelessWidget {
       },
       builder: (context, state) {
         if (state is ProductLoading) {
-          return Center(
+          return const Center(
               child: Padding(
-            padding: const EdgeInsets.all(30),
+            padding: EdgeInsets.all(30),
             child: CircularProgressIndicator(),
           ));
         }
@@ -53,7 +53,7 @@ class ProductBlocConsumer extends StatelessWidget {
 
         if (state is ProductLoadingMore) {
           return ProductGrid(
-            key: PageStorageKey<String>('productGridScrollPosition'),
+            key: const PageStorageKey<String>('productGridScrollPosition'),
             isLoadingMore: true,
             isErrorOnLoadingMore: false,
             products: state.products,
@@ -62,7 +62,7 @@ class ProductBlocConsumer extends StatelessWidget {
 
         if (state is ProductErrorLoadingMore) {
           return ProductGrid(
-            key: PageStorageKey<String>('productGridScrollPosition'),
+            key: const PageStorageKey<String>('productGridScrollPosition'),
             isLoadingMore: false,
             isErrorOnLoadingMore: true,
             products: state.productPaginated.data,
@@ -88,7 +88,7 @@ class ProductBlocConsumer extends StatelessWidget {
               return false;
             },
             child: ProductGrid(
-              key: PageStorageKey<String>('productGridScrollPosition'),
+              key: const PageStorageKey<String>('productGridScrollPosition'),
               isLoadingMore: false,
               isErrorOnLoadingMore: false,
               products: state.productPaginated.data,
@@ -96,7 +96,7 @@ class ProductBlocConsumer extends StatelessWidget {
           );
         }
 
-        return SizedBox.shrink();
+        return const SizedBox.shrink();
       },
     );
   }
