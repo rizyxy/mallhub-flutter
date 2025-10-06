@@ -13,7 +13,16 @@ class ProductPage extends StatelessWidget {
         padding: EdgeInsets.all(30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[Expanded(child: ProductBlocConsumer())],
+          children: <Widget>[
+            Text(
+              "All Products",
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Expanded(child: ProductBlocConsumer())
+          ],
         ),
       )),
     );
