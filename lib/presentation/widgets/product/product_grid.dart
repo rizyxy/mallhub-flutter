@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mallhub_flutter/data/model/product.dart';
 import 'package:mallhub_flutter/presentation/bloc/product_bloc/product_bloc.dart';
+import 'package:mallhub_flutter/presentation/views/product_detail_page.dart';
 import 'package:mallhub_flutter/presentation/widgets/shared/item_card.dart';
 
 class ProductGrid extends StatelessWidget {
@@ -54,9 +55,18 @@ class ProductGrid extends StatelessWidget {
           );
         }
 
-        return ItemCard(
-            itemName: products[index].name,
-            itemDescription: products[index].storeName);
+        return InkWell(
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        ProductDetailPage(productModel: products[index])));
+          },
+          child: ItemCard(
+              itemName: products[index].name,
+              itemDescription: products[index].storeName),
+        );
       },
     );
   }
