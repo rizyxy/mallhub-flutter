@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mallhub_flutter/presentation/widgets/product/product_bloc_consumer.dart';
 import 'package:mallhub_flutter/presentation/widgets/product/product_grid.dart';
 
 class ProductPage extends StatelessWidget {
@@ -12,7 +13,7 @@ class ProductPage extends StatelessWidget {
         padding: EdgeInsets.all(30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[Expanded(child: ProductGrid())],
+          children: <Widget>[Expanded(child: ProductBlocConsumer())],
         ),
       )),
     );
