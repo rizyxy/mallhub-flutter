@@ -16,5 +16,16 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
         emit(ProductError());
       }
     });
+
+    on<FetchMoreProduct>((event, emit) async {
+      emit(ProductLoadingMore());
+
+      try {
+        await Future.delayed(Duration(seconds: 2));
+        emit(ProductSuccess());
+      } catch (e) {
+        emit(ProductErrorLoadingMore());
+      }
+    });
   }
 }

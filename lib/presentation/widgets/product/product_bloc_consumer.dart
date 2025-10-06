@@ -43,8 +43,37 @@ class ProductBlocConsumer extends StatelessWidget {
           );
         }
 
+        if (state is ProductLoadingMore) {
+          return ProductGrid(
+              key: PageStorageKey<String>('productGridScrollPosition'),
+              isLoadingMore: true,
+              isErrorOnLoadingMore: false);
+        }
+
+        if (state is ProductErrorLoadingMore) {
+          return ProductGrid(
+              key: PageStorageKey<String>('productGridScrollPosition'),
+              isLoadingMore: false,
+              isErrorOnLoadingMore: true);
+        }
+
         if (state is ProductSuccess) {
-          return ProductGrid();
+          return NotificationListener<ScrollNotification>(
+            onNotification: (notification) {
+              if (notification is ScrollEndNotification &&
+                  notification.metrics.pixels >=
+                      notification.metrics.maxScrollExtent) {
+                context.read<ProductBloc>().add(FetchMoreProduct());
+              }
+
+              return false;
+            },
+            child: ProductGrid(
+              key: PageStorageKey<String>('productGridScrollPosition'),
+              isLoadingMore: false,
+              isErrorOnLoadingMore: false,
+            ),
+          );
         }
 
         return SizedBox.shrink();
