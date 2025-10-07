@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mallhub_flutter/data/model/product.dart';
 import 'package:mallhub_flutter/data/paginated/product_paginated.dart';
 import 'package:mallhub_flutter/data/repository/product_repository.dart';
 
@@ -33,7 +32,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
 
       ProductPaginated prevProductPaginated = prevState.productPaginated;
 
-      emit(ProductLoadingMore(products: prevProductPaginated.data));
+      emit(ProductLoadingMore(productPaginated: prevProductPaginated));
 
       try {
         ProductPaginated newProductPaginated = await _productRepository

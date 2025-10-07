@@ -20,13 +20,8 @@ abstract class StoreInitialLoadPassed extends StoreState {
 
 class StoreLoading extends StoreState {}
 
-class StoreLoadingMore extends StoreState {
-  final List<StoreModel> stores;
-
-  const StoreLoadingMore({required this.stores});
-
-  @override
-  List<Object?> get props => [stores];
+class StoreLoadingMore extends StoreInitialLoadPassed {
+  const StoreLoadingMore({required super.storePaginated});
 }
 
 class StoreSuccess extends StoreInitialLoadPassed {

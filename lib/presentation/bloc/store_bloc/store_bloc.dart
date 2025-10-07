@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mallhub_flutter/data/model/store.dart';
 import 'package:mallhub_flutter/data/paginated/store_paginated.dart';
 import 'package:mallhub_flutter/data/repository/store_repository.dart';
 
@@ -32,7 +31,7 @@ class StoreBloc extends Bloc<StoreEvent, StoreState> {
 
       StorePaginated prevStorePaginatd = prevState.storePaginated;
 
-      emit(StoreLoadingMore(stores: prevStorePaginatd.data));
+      emit(StoreLoadingMore(storePaginated: prevStorePaginatd));
 
       try {
         StorePaginated newStorePaginated = await _storeRepository.fetchStore(

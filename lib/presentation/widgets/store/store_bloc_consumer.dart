@@ -56,7 +56,7 @@ class StoreBlocConsumer extends StatelessWidget {
             key: const PageStorageKey<String>('storeGridScrollPosition'),
             isLoadingMore: true,
             isErrorOnLoadingMore: false,
-            stores: state.stores,
+            stores: state.storePaginated.data,
           );
         }
 

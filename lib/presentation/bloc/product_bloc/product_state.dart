@@ -20,13 +20,8 @@ abstract class ProductInitialLoadPassed extends ProductState {
 
 class ProductLoading extends ProductState {}
 
-class ProductLoadingMore extends ProductState {
-  final List<ProductModel> products;
-
-  const ProductLoadingMore({required this.products});
-
-  @override
-  List<Object?> get props => [products];
+class ProductLoadingMore extends ProductInitialLoadPassed {
+  const ProductLoadingMore({required super.productPaginated});
 }
 
 class ProductSuccess extends ProductInitialLoadPassed {

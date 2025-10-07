@@ -11,7 +11,7 @@ class ProductDetailPage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
           child: Padding(
-        padding: EdgeInsets.all(30),
+        padding: const EdgeInsets.all(30),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -20,26 +20,27 @@ class ProductDetailPage extends StatelessWidget {
                 height: 400,
                 color: Colors.grey.shade200,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Text(
                 productModel.name,
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
               Text(
                 "Rp ${productModel.price.toString()}",
-                style: TextStyle(fontSize: 18),
+                style: const TextStyle(fontSize: 18),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Text(
                 productModel.storeName,
-                style: TextStyle(
+                style: const TextStyle(
                     decoration: TextDecoration.underline, fontSize: 15),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Text(productModel.description)
