@@ -96,8 +96,8 @@ class HomePage extends StatelessWidget {
                           },
                           child: ItemCard(
                               itemName: state.productPaginated.data[index].name,
-                              itemDescription:
-                                  state.productPaginated.data[index].storeName),
+                              itemDescription: state
+                                  .productPaginated.data[index].store.name),
                         );
                       });
                 }

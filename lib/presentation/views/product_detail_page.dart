@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mallhub_flutter/data/model/product.dart';
+import 'package:mallhub_flutter/presentation/views/store_catalog_page.dart';
 
 class ProductDetailPage extends StatelessWidget {
   const ProductDetailPage({super.key, required this.productModel});
@@ -35,10 +36,19 @@ class ProductDetailPage extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              Text(
-                productModel.storeName,
-                style: const TextStyle(
-                    decoration: TextDecoration.underline, fontSize: 15),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => StoreCatalogPage(
+                              storeModel: productModel.store)));
+                },
+                child: Text(
+                  productModel.store.name,
+                  style: const TextStyle(
+                      decoration: TextDecoration.underline, fontSize: 15),
+                ),
               ),
               const SizedBox(
                 height: 20,

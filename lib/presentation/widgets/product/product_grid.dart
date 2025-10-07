@@ -65,7 +65,7 @@ class ProductGrid extends StatelessWidget {
           },
           child: ItemCard(
               itemName: products[index].name,
-              itemDescription: products[index].storeName),
+              itemDescription: products[index].store.name),
         );
       },
     );

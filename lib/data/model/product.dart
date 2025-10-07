@@ -3,21 +3,21 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
+import 'package:mallhub_flutter/data/model/store.dart';
+
 class ProductModel {
   int id;
   String name;
   String description;
   double price;
-  int storeId;
-  String storeName;
+  StoreModel store;
   List<String> productImages;
   ProductModel({
     required this.id,
     required this.name,
     required this.description,
     required this.price,
-    required this.storeId,
-    required this.storeName,
+    required this.store,
     required this.productImages,
   });
 
@@ -26,8 +26,7 @@ class ProductModel {
     String? name,
     String? description,
     double? price,
-    int? storeId,
-    String? storeName,
+    StoreModel? store,
     List<String>? productImages,
   }) {
     return ProductModel(
@@ -35,8 +34,7 @@ class ProductModel {
       name: name ?? this.name,
       description: description ?? this.description,
       price: price ?? this.price,
-      storeId: storeId ?? this.storeId,
-      storeName: storeName ?? this.storeName,
+      store: store ?? this.store,
       productImages: productImages ?? this.productImages,
     );
   }
@@ -46,9 +44,8 @@ class ProductModel {
       id: map['id'] as int,
       name: map['name'] as String,
       description: map['description'] as String,
-      price: (map['price'] as int).toDouble(),
-      storeId: map['store']['id'] as int,
-      storeName: map['store']['name'] as String,
+      price: (map['price'] as num).toDouble(),
+      store: StoreModel.fromMap(map['store'] as Map<String, dynamic>),
       productImages: (map['product_images'] as List)
           .map((img) => (img['url'] as String))
           .toList(),
@@ -60,7 +57,7 @@ class ProductModel {
 
   @override
   String toString() {
-    return 'Product(id: $id, name: $name, description: $description, price: $price, storeId: $storeId, storeName: $storeName, productImages: $productImages)';
+    return 'ProductModel(id: $id, name: $name, description: $description, price: $price, store: $store, productImages: $productImages)';
   }
 
   @override
@@ -71,8 +68,7 @@ class ProductModel {
         other.name == name &&
         other.description == description &&
         other.price == price &&
-        other.storeId == storeId &&
-        other.storeName == storeName &&
+        other.store == store &&
         listEquals(other.productImages, productImages);
   }
 
@@ -82,8 +78,7 @@ class ProductModel {
         name.hashCode ^
         description.hashCode ^
         price.hashCode ^
-        storeId.hashCode ^
-        storeName.hashCode ^
+        store.hashCode ^
         productImages.hashCode;
   }
 }
