@@ -4,6 +4,7 @@ import 'package:mallhub_flutter/presentation/bloc/product_bloc/product_bloc.dart
 import 'package:mallhub_flutter/presentation/bloc/store_bloc/store_bloc.dart';
 import 'package:mallhub_flutter/presentation/views/product_detail_page.dart';
 import 'package:mallhub_flutter/presentation/views/product_page.dart';
+import 'package:mallhub_flutter/presentation/views/store_catalog_page.dart';
 import 'package:mallhub_flutter/presentation/widgets/shared/item_card.dart';
 
 class HomePage extends StatelessWidget {
@@ -158,6 +159,14 @@ class HomePage extends StatelessWidget {
                       itemCount: 4,
                       itemBuilder: (context, index) {
                         return InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => StoreCatalogPage(
+                                        storeModel:
+                                            state.storePaginated.data[index])));
+                          },
                           child: ItemCard(
                               itemName: state.storePaginated.data[index].name,
                               itemDescription:
