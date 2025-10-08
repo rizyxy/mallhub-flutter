@@ -5,6 +5,7 @@ import 'package:mallhub_flutter/presentation/bloc/store_bloc/store_bloc.dart';
 import 'package:mallhub_flutter/presentation/views/product_detail_page.dart';
 import 'package:mallhub_flutter/presentation/views/product_page.dart';
 import 'package:mallhub_flutter/presentation/views/store_catalog_page.dart';
+import 'package:mallhub_flutter/presentation/views/store_page.dart';
 import 'package:mallhub_flutter/presentation/widgets/shared/item_card.dart';
 
 class HomePage extends StatelessWidget {
@@ -107,14 +108,21 @@ class HomePage extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text(
+                  const Text(
                     "Store",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                  Text("View More")
+                  InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const StorePage()));
+                      },
+                      child: const Text("View More"))
                 ],
               ),
               const SizedBox(
