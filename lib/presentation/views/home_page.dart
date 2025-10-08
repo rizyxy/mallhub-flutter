@@ -170,7 +170,7 @@ class HomePage extends StatelessWidget {
                           child: ItemCard(
                               itemName: state.storePaginated.data[index].name,
                               itemDescription:
-                                  state.storePaginated.data[index].floorName),
+                                  state.storePaginated.data[index].floor.name),
                         );
                       });
                 }

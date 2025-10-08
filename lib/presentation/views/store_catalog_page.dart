@@ -22,7 +22,7 @@ class StoreCatalogPage extends StatelessWidget {
               storeModel.name,
               style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             ),
-            Text(storeModel.floorName),
+            Text(storeModel.floor.name),
             const SizedBox(
               height: 20,
             ),

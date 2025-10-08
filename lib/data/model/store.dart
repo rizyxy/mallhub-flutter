@@ -1,33 +1,31 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:mallhub_flutter/data/model/floor.dart';
+
 class StoreModel {
   int id;
   String name;
   String logoUrl;
-  int floorId;
-  String floorName;
+  FloorModel floor;
   StoreModel({
     required this.id,
     required this.name,
     required this.logoUrl,
-    required this.floorId,
-    required this.floorName,
+    required this.floor,
   });
 
   StoreModel copyWith({
     int? id,
     String? name,
     String? logoUrl,
-    int? floorId,
-    String? floorName,
+    FloorModel? floor,
   }) {
     return StoreModel(
       id: id ?? this.id,
       name: name ?? this.name,
       logoUrl: logoUrl ?? this.logoUrl,
-      floorId: floorId ?? this.floorId,
-      floorName: floorName ?? this.floorName,
+      floor: floor ?? this.floor,
     );
   }
 
@@ -36,8 +34,7 @@ class StoreModel {
       id: map['id'] as int,
       name: map['name'] as String,
       logoUrl: map['logo_url'] as String,
-      floorId: map['floor']['id'] as int,
-      floorName: map['floor']['name'] as String,
+      floor: FloorModel.fromMap(map['floor'] as Map<String, dynamic>),
     );
   }
 
@@ -46,7 +43,7 @@ class StoreModel {
 
   @override
   String toString() {
-    return 'StoreModel(id: $id, name: $name, logoUrl: $logoUrl, floorId: $floorId, floorName: $floorName)';
+    return 'StoreModel(id: $id, name: $name, logoUrl: $logoUrl, floor: $floor)';
   }
 
   @override
@@ -56,16 +53,11 @@ class StoreModel {
     return other.id == id &&
         other.name == name &&
         other.logoUrl == logoUrl &&
-        other.floorId == floorId &&
-        other.floorName == floorName;
+        other.floor == floor;
   }
 
   @override
   int get hashCode {
-    return id.hashCode ^
-        name.hashCode ^
-        logoUrl.hashCode ^
-        floorId.hashCode ^
-        floorName.hashCode;
+    return id.hashCode ^ name.hashCode ^ logoUrl.hashCode ^ floor.hashCode;
   }
 }

@@ -66,7 +66,7 @@ class StoreGrid extends StatelessWidget {
           },
           child: ItemCard(
               itemName: stores[index].name,
-              itemDescription: stores[index].floorName),
+              itemDescription: stores[index].floor.name),
         );
       },
     );
