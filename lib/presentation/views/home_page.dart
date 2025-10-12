@@ -67,36 +67,14 @@ class HomePage extends StatelessWidget {
                   return SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(right: 10),
-                          child: InkWell(
-                              borderRadius: BorderRadius.circular(15),
-                              onTap: () {},
-                              child: ItemPill(itemName: "Lantai 1")),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 10),
-                          child: InkWell(
-                              borderRadius: BorderRadius.circular(15),
-                              onTap: () {},
-                              child: ItemPill(itemName: "Lantai 1")),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 10),
-                          child: InkWell(
-                              borderRadius: BorderRadius.circular(15),
-                              onTap: () {},
-                              child: ItemPill(itemName: "Lantai 1")),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 10),
-                          child: InkWell(
-                              borderRadius: BorderRadius.circular(15),
-                              onTap: () {},
-                              child: ItemPill(itemName: "Lantai 1")),
-                        ),
-                      ],
+                      children: state.floors
+                          .map((floor) => Padding(
+                                padding: EdgeInsets.only(right: 10),
+                                child: InkWell(
+                                  child: ItemPill(itemName: floor.name),
+                                ),
+                              ))
+                          .toList(),
                     ),
                   );
                 }
