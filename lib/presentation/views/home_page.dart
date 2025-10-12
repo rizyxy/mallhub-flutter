@@ -31,16 +31,16 @@ class HomePage extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              Text(
+              const Text(
                 "Floors",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               BlocBuilder<FloorBloc, FloorState>(builder: (context, state) {
                 if (state is FloorLoading) {
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 }
@@ -70,7 +70,7 @@ class HomePage extends StatelessWidget {
                     child: Row(
                       children: state.floors
                           .map((floor) => Padding(
-                                padding: EdgeInsets.only(right: 10),
+                                padding: const EdgeInsets.only(right: 10),
                                 child: InkWell(
                                   borderRadius: BorderRadius.circular(15),
                                   onTap: () {
@@ -89,9 +89,9 @@ class HomePage extends StatelessWidget {
                   );
                 }
 
-                return SizedBox.shrink();
+                return const SizedBox.shrink();
               }),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Row(

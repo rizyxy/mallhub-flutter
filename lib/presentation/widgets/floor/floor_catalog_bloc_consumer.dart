@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mallhub_flutter/data/model/floor.dart';
@@ -25,7 +24,7 @@ class FloorCatalogBlocConsumer extends StatelessWidget {
 
           if (state is FloorCatalogLoadingMore) {
             return StoreGrid(
-                key: PageStorageKey<String>('floorCatalogScrollPosition'),
+                key: const PageStorageKey<String>('floorCatalogScrollPosition'),
                 isLoadingMore: true,
                 isErrorOnLoadingMore: false,
                 stores: state.storePaginated.data);
@@ -54,7 +53,7 @@ class FloorCatalogBlocConsumer extends StatelessWidget {
 
           if (state is FloorCatalogErrorLoadingMore) {
             return StoreGrid(
-                key: PageStorageKey<String>('floorCatalogScrollPosition'),
+                key: const PageStorageKey<String>('floorCatalogScrollPosition'),
                 isLoadingMore: false,
                 isErrorOnLoadingMore: true,
                 stores: state.storePaginated.data);
@@ -82,13 +81,14 @@ class FloorCatalogBlocConsumer extends StatelessWidget {
                   return false;
                 },
                 child: StoreGrid(
-                    key: PageStorageKey<String>('floorCatalogScrollPosition'),
+                    key: const PageStorageKey<String>(
+                        'floorCatalogScrollPosition'),
                     isLoadingMore: false,
                     isErrorOnLoadingMore: false,
                     stores: state.storePaginated.data));
           }
 
-          return SizedBox.shrink();
+          return const SizedBox.shrink();
         });
   }
 }

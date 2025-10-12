@@ -7,7 +7,7 @@ part 'floor_catalog_event.dart';
 part 'floor_catalog_state.dart';
 
 class FloorCatalogBloc extends Bloc<FloorCatalogEvent, FloorCatalogState> {
-  FloorRepository _floorRepository = FloorRepository();
+  final FloorRepository _floorRepository = FloorRepository();
 
   FloorCatalogBloc() : super(FloorCatalogInitial()) {
     on<FetchFloorCatalog>((event, emit) async {

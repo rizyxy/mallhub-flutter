@@ -7,7 +7,7 @@ part 'floor_event.dart';
 part 'floor_state.dart';
 
 class FloorBloc extends Bloc<FloorEvent, FloorState> {
-  FloorRepository _floorRepository = FloorRepository();
+  final FloorRepository _floorRepository = FloorRepository();
 
   FloorBloc() : super(FloorInitial()) {
     on<FetchFloor>((event, emit) async {

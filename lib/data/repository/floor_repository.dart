@@ -27,7 +27,7 @@ class FloorRepository {
 
   Future<StorePaginated> fetchFloorCatalog(
       {required int floorId, String? cursor}) async {
-    Uri uri = Uri.parse("${dotenv.get('SERVER_URL')}/floor/${floorId}/stores");
+    Uri uri = Uri.parse("${dotenv.get('SERVER_URL')}/floor/$floorId/stores");
 
     if (cursor != null) {
       uri.replace(queryParameters: {'cursor': cursor});
