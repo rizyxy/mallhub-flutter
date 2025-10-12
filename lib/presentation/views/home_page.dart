@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mallhub_flutter/presentation/bloc/floor_bloc/floor_bloc.dart';
 import 'package:mallhub_flutter/presentation/bloc/product_bloc/product_bloc.dart';
 import 'package:mallhub_flutter/presentation/bloc/store_bloc/store_bloc.dart';
 import 'package:mallhub_flutter/presentation/views/product_detail_page.dart';
@@ -7,6 +8,7 @@ import 'package:mallhub_flutter/presentation/views/product_page.dart';
 import 'package:mallhub_flutter/presentation/views/store_catalog_page.dart';
 import 'package:mallhub_flutter/presentation/views/store_page.dart';
 import 'package:mallhub_flutter/presentation/widgets/shared/item_card.dart';
+import 'package:mallhub_flutter/presentation/widgets/shared/item_pill.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -26,6 +28,82 @@ class HomePage extends StatelessWidget {
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
               const SizedBox(
+                height: 10,
+              ),
+              Text(
+                "Floors",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              BlocBuilder<FloorBloc, FloorState>(builder: (context, state) {
+                if (state is FloorLoading) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+
+                if (state is FloorError) {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          context.read<FloorBloc>().add(FetchFloor());
+                        },
+                        child: const Icon(
+                          Icons.restart_alt,
+                          size: 30,
+                        ),
+                      ),
+                      const Text("Tap to retry")
+                    ],
+                  );
+                }
+
+                if (state is FloorSuccess) {
+                  return SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(right: 10),
+                          child: InkWell(
+                              borderRadius: BorderRadius.circular(15),
+                              onTap: () {},
+                              child: ItemPill(itemName: "Lantai 1")),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 10),
+                          child: InkWell(
+                              borderRadius: BorderRadius.circular(15),
+                              onTap: () {},
+                              child: ItemPill(itemName: "Lantai 1")),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 10),
+                          child: InkWell(
+                              borderRadius: BorderRadius.circular(15),
+                              onTap: () {},
+                              child: ItemPill(itemName: "Lantai 1")),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 10),
+                          child: InkWell(
+                              borderRadius: BorderRadius.circular(15),
+                              onTap: () {},
+                              child: ItemPill(itemName: "Lantai 1")),
+                        ),
+                      ],
+                    ),
+                  );
+                }
+
+                return SizedBox.shrink();
+              }),
+              SizedBox(
                 height: 20,
               ),
               Row(
