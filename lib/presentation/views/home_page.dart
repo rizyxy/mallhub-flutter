@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mallhub_flutter/presentation/bloc/floor_bloc/floor_bloc.dart';
 import 'package:mallhub_flutter/presentation/bloc/product_bloc/product_bloc.dart';
 import 'package:mallhub_flutter/presentation/bloc/store_bloc/store_bloc.dart';
+import 'package:mallhub_flutter/presentation/views/floor_catalog_page.dart';
 import 'package:mallhub_flutter/presentation/views/product_detail_page.dart';
 import 'package:mallhub_flutter/presentation/views/product_page.dart';
 import 'package:mallhub_flutter/presentation/views/store_catalog_page.dart';
@@ -71,6 +72,15 @@ class HomePage extends StatelessWidget {
                           .map((floor) => Padding(
                                 padding: EdgeInsets.only(right: 10),
                                 child: InkWell(
+                                  borderRadius: BorderRadius.circular(15),
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                FloorCatalogPage(
+                                                    floor: floor)));
+                                  },
                                   child: ItemPill(itemName: floor.name),
                                 ),
                               ))
