@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mallhub_flutter/presentation/bloc/category_bloc/category_bloc.dart';
+import 'package:mallhub_flutter/presentation/views/subcategory_page.dart';
 
 class CategoryBlocConsumer extends StatelessWidget {
   const CategoryBlocConsumer({super.key});
@@ -43,6 +44,13 @@ class CategoryBlocConsumer extends StatelessWidget {
             return ListView.separated(
                 itemBuilder: (context, index) {
                   return InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SubCategoryPage(
+                                  category: state.categories[index])));
+                    },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: Text(state.categories[index].name),
