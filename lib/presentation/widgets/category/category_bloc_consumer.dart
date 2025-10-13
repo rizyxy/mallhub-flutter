@@ -45,14 +45,14 @@ class CategoryBlocConsumer extends StatelessWidget {
                   return InkWell(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: Text("Category"),
+                      child: Text(state.categories[index].name),
                     ),
                   );
                 },
                 separatorBuilder: (context, index) {
                   return Divider();
                 },
-                itemCount: 10);
+                itemCount: state.categories.length);
           }
 
           return SizedBox.shrink();
