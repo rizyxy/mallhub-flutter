@@ -1,6 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mallhub_flutter/data/model/category.dart';
+import 'package:mallhub_flutter/presentation/bloc/sub_category_bloc/sub_category_bloc.dart';
+import 'package:mallhub_flutter/presentation/widgets/sub_category/sub_category_bloc_consumer.dart';
 
 class SubCategoryPage extends StatelessWidget {
   const SubCategoryPage({super.key, required this.category});
@@ -19,6 +22,15 @@ class SubCategoryPage extends StatelessWidget {
             Text(
               category.name,
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Expanded(
+              child: BlocProvider<SubCategoryBloc>(
+                  create: (context) => SubCategoryBloc()
+                    ..add(FetchSubCategory(categoryId: category.id)),
+                  child: SubCategoryBlocConsumer(category: category)),
             )
           ],
         ),
