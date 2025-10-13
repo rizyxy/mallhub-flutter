@@ -12,7 +12,7 @@ class CategoryInitial extends CategoryState {}
 class CategoryLoading extends CategoryState {}
 
 class CategorySuccess extends CategoryState {
-  final List<Category> categories;
+  final List<CategoryModel> categories;
 
   const CategorySuccess({required this.categories});
 
