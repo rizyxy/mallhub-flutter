@@ -1,8 +1,9 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mallhub_flutter/data/model/category.dart';
 import 'package:mallhub_flutter/presentation/bloc/sub_category_bloc/sub_category_bloc.dart';
+import 'package:mallhub_flutter/presentation/bloc/sub_category_catalog_bloc/sub_category_catalog_bloc.dart';
+import 'package:mallhub_flutter/presentation/views/sub_category_catalog_page.dart';
 
 class SubCategoryBlocConsumer extends StatelessWidget {
   const SubCategoryBlocConsumer({super.key, required this.category});
@@ -15,7 +16,7 @@ class SubCategoryBlocConsumer extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         if (state is SubCategoryLoading) {
-          return Center(
+          return const Center(
             child: Padding(
               padding: EdgeInsets.all(30),
               child: CircularProgressIndicator(),
@@ -48,6 +49,21 @@ class SubCategoryBlocConsumer extends StatelessWidget {
           return ListView.separated(
               itemBuilder: (context, index) {
                 return InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                BlocProvider<SubCategoryCatalogBloc>(
+                                  create: (context) => SubCategoryCatalogBloc()
+                                    ..add(FetchSubCategoryCatalog(
+                                        subCategoryId:
+                                            state.subCategories[index].id)),
+                                  child: SubCategoryCatalogPage(
+                                    subCategory: state.subCategories[index],
+                                  ),
+                                )));
+                  },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: Text(state.subCategories[index].name),
@@ -55,12 +71,12 @@ class SubCategoryBlocConsumer extends StatelessWidget {
                 );
               },
               separatorBuilder: (context, index) {
-                return Divider();
+                return const Divider();
               },
               itemCount: state.subCategories.length);
         }
 
-        return SizedBox.shrink();
+        return const SizedBox.shrink();
       },
     );
   }

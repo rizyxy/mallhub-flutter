@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mallhub_flutter/presentation/bloc/category_bloc/category_bloc.dart';
@@ -12,21 +11,21 @@ class CategoryPage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
           child: Padding(
-        padding: EdgeInsets.all(30),
+        padding: const EdgeInsets.all(30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Text(
+            const Text(
               "All Categories",
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Expanded(
               child: BlocProvider<CategoryBloc>(
                 create: (context) => CategoryBloc()..add(FetchCategory()),
-                child: CategoryBlocConsumer(),
+                child: const CategoryBlocConsumer(),
               ),
             )
           ],

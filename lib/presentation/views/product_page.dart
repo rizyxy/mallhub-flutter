@@ -18,7 +18,7 @@ class ProductPage extends StatelessWidget {
               "All Products",
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Row(
@@ -32,13 +32,13 @@ class ProductPage extends StatelessWidget {
                       decoration: BoxDecoration(
                           color: Colors.grey.shade200,
                           borderRadius: BorderRadius.circular(10)),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 10),
                       child: const Text("Search Product"),
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
                 InkWell(
@@ -46,15 +46,15 @@ class ProductPage extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => CategoryPage()));
+                            builder: (context) => const CategoryPage()));
                   },
                   borderRadius: BorderRadius.circular(10),
                   child: Ink(
                     decoration: BoxDecoration(
                         color: Colors.grey.shade200,
                         borderRadius: BorderRadius.circular(10)),
-                    padding: EdgeInsets.all(10),
-                    child: Icon(Icons.filter_alt),
+                    padding: const EdgeInsets.all(10),
+                    child: const Icon(Icons.filter_alt),
                   ),
                 )
               ],

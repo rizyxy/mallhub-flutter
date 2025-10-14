@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mallhub_flutter/presentation/bloc/category_bloc/category_bloc.dart';
@@ -13,7 +12,7 @@ class CategoryBlocConsumer extends StatelessWidget {
         listener: (context, state) {},
         builder: (context, state) {
           if (state is CategoryLoading) {
-            return Center(
+            return const Center(
               child: Padding(
                 padding: EdgeInsets.all(30),
                 child: CircularProgressIndicator(),
@@ -58,12 +57,12 @@ class CategoryBlocConsumer extends StatelessWidget {
                   );
                 },
                 separatorBuilder: (context, index) {
-                  return Divider();
+                  return const Divider();
                 },
                 itemCount: state.categories.length);
           }
 
-          return SizedBox.shrink();
+          return const SizedBox.shrink();
         });
   }
 }
