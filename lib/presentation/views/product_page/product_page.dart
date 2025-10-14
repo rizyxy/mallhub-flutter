@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mallhub_flutter/presentation/views/category_page.dart';
+import 'package:mallhub_flutter/presentation/views/category_page/category_page.dart';
 import 'package:mallhub_flutter/presentation/widgets/product/product_bloc_consumer.dart';
 
 class ProductPage extends StatelessWidget {

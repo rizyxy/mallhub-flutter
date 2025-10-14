@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mallhub_flutter/presentation/bloc/category_bloc/category_bloc.dart';
-import 'package:mallhub_flutter/presentation/views/subcategory_page.dart';
+import 'package:mallhub_flutter/presentation/views/sub_category_page/sub_category_page.dart';
 
 class CategoryBlocConsumer extends StatelessWidget {
   const CategoryBlocConsumer({super.key});

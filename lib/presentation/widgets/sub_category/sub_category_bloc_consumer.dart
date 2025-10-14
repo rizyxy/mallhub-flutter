@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mallhub_flutter/data/model/category.dart';
 import 'package:mallhub_flutter/presentation/bloc/sub_category_bloc/sub_category_bloc.dart';
 import 'package:mallhub_flutter/presentation/bloc/sub_category_catalog_bloc/sub_category_catalog_bloc.dart';
-import 'package:mallhub_flutter/presentation/views/sub_category_catalog_page.dart';
+import 'package:mallhub_flutter/presentation/views/sub_category_page/sub_category_catalog_page.dart';
 
 class SubCategoryBlocConsumer extends StatelessWidget {
   const SubCategoryBlocConsumer({super.key, required this.category});

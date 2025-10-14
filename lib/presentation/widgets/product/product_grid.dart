@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mallhub_flutter/data/model/product.dart';
 import 'package:mallhub_flutter/presentation/bloc/product_bloc/product_bloc.dart';
-import 'package:mallhub_flutter/presentation/views/product_detail_page.dart';
+import 'package:mallhub_flutter/presentation/views/product_page/product_detail_page.dart';
 import 'package:mallhub_flutter/presentation/widgets/shared/item_card.dart';
 
 class ProductGrid extends StatelessWidget {

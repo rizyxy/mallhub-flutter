@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:mallhub_flutter/data/model/subcategory.dart';
+import 'package:mallhub_flutter/data/model/sub_category.dart';
 import 'package:http/http.dart' as http;
 import 'package:mallhub_flutter/data/paginated/product_paginated.dart';
 

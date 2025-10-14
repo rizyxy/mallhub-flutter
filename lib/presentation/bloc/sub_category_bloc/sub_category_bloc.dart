@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mallhub_flutter/data/model/subcategory.dart';
+import 'package:mallhub_flutter/data/model/sub_category.dart';
 import 'package:mallhub_flutter/data/repository/sub_category_repository.dart';
 
 part 'sub_category_event.dart';

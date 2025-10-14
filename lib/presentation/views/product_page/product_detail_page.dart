@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mallhub_flutter/data/model/product.dart';
-import 'package:mallhub_flutter/presentation/views/store_catalog_page.dart';
+import 'package:mallhub_flutter/presentation/views/store_page/store_catalog_page.dart';
 
 class ProductDetailPage extends StatelessWidget {
   const ProductDetailPage({super.key, required this.productModel});

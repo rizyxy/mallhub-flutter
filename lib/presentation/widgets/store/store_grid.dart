@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mallhub_flutter/data/model/store.dart';
 import 'package:mallhub_flutter/presentation/bloc/store_bloc/store_bloc.dart';
-import 'package:mallhub_flutter/presentation/views/store_catalog_page.dart';
+import 'package:mallhub_flutter/presentation/views/store_page/store_catalog_page.dart';
 import 'package:mallhub_flutter/presentation/widgets/shared/item_card.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

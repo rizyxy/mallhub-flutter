@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mallhub_flutter/data/model/subcategory.dart';
+import 'package:mallhub_flutter/data/model/sub_category.dart';
 import 'package:mallhub_flutter/presentation/bloc/sub_category_catalog_bloc/sub_category_catalog_bloc.dart';
 import 'package:mallhub_flutter/presentation/widgets/product/product_grid.dart';
 

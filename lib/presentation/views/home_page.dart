@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mallhub_flutter/presentation/bloc/floor_bloc/floor_bloc.dart';
 import 'package:mallhub_flutter/presentation/bloc/product_bloc/product_bloc.dart';
 import 'package:mallhub_flutter/presentation/bloc/store_bloc/store_bloc.dart';
-import 'package:mallhub_flutter/presentation/views/floor_catalog_page.dart';
-import 'package:mallhub_flutter/presentation/views/product_detail_page.dart';
-import 'package:mallhub_flutter/presentation/views/product_page.dart';
-import 'package:mallhub_flutter/presentation/views/store_catalog_page.dart';
-import 'package:mallhub_flutter/presentation/views/store_page.dart';
+import 'package:mallhub_flutter/presentation/views/floor_page/floor_catalog_page.dart';
+import 'package:mallhub_flutter/presentation/views/product_page/product_detail_page.dart';
+import 'package:mallhub_flutter/presentation/views/product_page/product_page.dart';
+import 'package:mallhub_flutter/presentation/views/store_page/store_catalog_page.dart';
+import 'package:mallhub_flutter/presentation/views/store_page/store_page.dart';
 import 'package:mallhub_flutter/presentation/widgets/shared/item_card.dart';
 import 'package:mallhub_flutter/presentation/widgets/shared/item_pill.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mallhub_flutter/data/model/subcategory.dart';
+import 'package:mallhub_flutter/data/model/sub_category.dart';
 import 'package:mallhub_flutter/presentation/widgets/sub_category/sub_category_catalog_bloc_consumer.dart';
 
 class SubCategoryCatalogPage extends StatelessWidget {
