@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mallhub_flutter/presentation/bloc/product_search_bloc/product_search_bloc.dart';
 import 'package:mallhub_flutter/presentation/views/category_page/category_page.dart';
 import 'package:mallhub_flutter/presentation/views/product_page/product_search_page.dart';
 import 'package:mallhub_flutter/presentation/widgets/product/product_bloc_consumer.dart';
@@ -31,7 +33,11 @@ class ProductPage extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => ProductSearchPage()));
+                              builder: (context) =>
+                                  BlocProvider<ProductSearchBloc>(
+                                    create: (context) => ProductSearchBloc(),
+                                    child: ProductSearchPage(),
+                                  )));
                     },
                     borderRadius: BorderRadius.circular(10),
                     child: Ink(
