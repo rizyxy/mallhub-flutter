@@ -58,6 +58,7 @@ class SubCategoryCatalogBlocConsumer extends StatelessWidget {
 
         if (state is SubCategoryCatalogLoadingMore) {
           return ProductGrid(
+            key: PageStorageKey<String>('subCategoryCatalogScrollPosition'),
             isLoadingMore: true,
             isErrorOnLoadingMore: false,
             products: state.productPaginated.data,
@@ -66,6 +67,7 @@ class SubCategoryCatalogBlocConsumer extends StatelessWidget {
 
         if (state is SubCategoryCatalogErrorLoadingMore) {
           return ProductGrid(
+            key: PageStorageKey<String>('subCategoryCatalogScrollPosition'),
             isLoadingMore: false,
             isErrorOnLoadingMore: true,
             products: state.productPaginated.data,
@@ -93,6 +95,7 @@ class SubCategoryCatalogBlocConsumer extends StatelessWidget {
               return false;
             },
             child: ProductGrid(
+              key: PageStorageKey<String>('subCategoryCatalogScrollPosition'),
               isLoadingMore: false,
               isErrorOnLoadingMore: false,
               products: state.productPaginated.data,
