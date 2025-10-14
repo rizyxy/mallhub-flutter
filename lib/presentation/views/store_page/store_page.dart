@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mallhub_flutter/presentation/views/store_page/store_search_page.dart';
 import 'package:mallhub_flutter/presentation/widgets/store/store_bloc_consumer.dart';
 
 class StorePage extends StatelessWidget {
@@ -6,7 +7,7 @@ class StorePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SafeArea(
           child: Padding(
         padding: EdgeInsets.all(30),
@@ -16,6 +17,23 @@ class StorePage extends StatelessWidget {
             Text(
               "All Stores",
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            InkWell(
+              borderRadius: BorderRadius.circular(10),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => StoreSearchPage()));
+              },
+              child: Ink(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                decoration: BoxDecoration(
+                    color: Colors.grey.shade200,
+                    borderRadius: BorderRadius.circular(10)),
+                child: Text("Search store"),
+              ),
             ),
             SizedBox(
               height: 20,
