@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mallhub_flutter/presentation/views/category_page/category_page.dart';
+import 'package:mallhub_flutter/presentation/views/product_page/product_search_page.dart';
 import 'package:mallhub_flutter/presentation/widgets/product/product_bloc_consumer.dart';
 
 class ProductPage extends StatelessWidget {
@@ -26,7 +27,12 @@ class ProductPage extends StatelessWidget {
               children: <Widget>[
                 Expanded(
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ProductSearchPage()));
+                    },
                     borderRadius: BorderRadius.circular(10),
                     child: Ink(
                       decoration: BoxDecoration(
