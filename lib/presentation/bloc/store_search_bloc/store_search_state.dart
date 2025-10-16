@@ -38,5 +38,11 @@ class StoreSearchError extends StoreSearchState {
 }
 
 class StoreSearchErrorLoadingMore extends StoreSearchInitialLoadPassed {
-  const StoreSearchErrorLoadingMore({required super.storePaginated});
+  final String? errorMessage;
+
+  const StoreSearchErrorLoadingMore(
+      {required super.storePaginated, this.errorMessage});
+
+  @override
+  List<Object?> get props => [...super.props, errorMessage];
 }

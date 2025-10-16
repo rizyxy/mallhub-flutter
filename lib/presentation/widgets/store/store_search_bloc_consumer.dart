@@ -12,7 +12,20 @@ class StoreSearchBlocConsumer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<StoreSearchBloc, StoreSearchState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is StoreSearchError || state is StoreSearchErrorLoadingMore) {
+          String? errorMessage;
+
+          if (state is StoreSearchError) {
+            errorMessage = state.errorMessage;
+          } else if (state is StoreSearchErrorLoadingMore) {
+            errorMessage = state.errorMessage;
+          }
+
+          ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(errorMessage ?? "An error has occured")));
+        }
+      },
       builder: (context, state) {
         if (state is StoreSearchLoading) {
           return Center(
@@ -80,7 +93,7 @@ class StoreSearchBlocConsumer extends StatelessWidget {
                         searchQuery: textEditingController.value.text));
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text("No more products to show")));
+                        content: Text("No more stores to show")));
                   }
 
                   return true;

@@ -6,12 +6,20 @@ import 'package:mallhub_flutter/data/paginated/store_paginated.dart';
 import 'package:http/http.dart' as http;
 
 class StoreRepository {
-  Future<StorePaginated> fetchStore({String? nextCursor}) async {
+  Future<StorePaginated> fetchStore(
+      {String? nextCursor, String? searchQuery}) async {
     Uri uri = Uri.parse("${dotenv.get('SERVER_URL')}/stores");
+    Map<String, dynamic> queryParameters = {};
 
     if (nextCursor != null) {
-      uri = uri.replace(queryParameters: {'cursor': nextCursor});
+      queryParameters['cursor'] = nextCursor;
     }
+
+    if (searchQuery != null) {
+      queryParameters['searchQuery'] = searchQuery;
+    }
+
+    uri = uri.replace(queryParameters: queryParameters);
 
     final response = await http.get(uri);
 
