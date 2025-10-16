@@ -41,8 +41,6 @@ class SubCategoryRepository {
 
     final decodedResponse = json.decode(response.body);
 
-    print(decodedResponse);
-
     ProductPaginated productPaginated =
         ProductPaginated.fromMap(decodedResponse);
 

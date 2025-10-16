@@ -12,15 +12,15 @@ class StorePage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
           child: Padding(
-        padding: EdgeInsets.all(30),
+        padding: const EdgeInsets.all(30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Text(
+            const Text(
               "All Stores",
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             InkWell(
@@ -31,20 +31,21 @@ class StorePage extends StatelessWidget {
                     MaterialPageRoute(
                         builder: (context) => BlocProvider<StoreSearchBloc>(
                             create: (context) => StoreSearchBloc(),
-                            child: StoreSearchPage())));
+                            child: const StoreSearchPage())));
               },
               child: Ink(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 decoration: BoxDecoration(
                     color: Colors.grey.shade200,
                     borderRadius: BorderRadius.circular(10)),
-                child: Text("Search store"),
+                child: const Text("Search store"),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            Expanded(child: StoreBlocConsumer())
+            const Expanded(child: StoreBlocConsumer())
           ],
         ),
       )),

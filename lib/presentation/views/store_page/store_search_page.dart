@@ -6,7 +6,7 @@ import 'package:mallhub_flutter/utils/debouncer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class StoreSearchPage extends StatefulWidget {
-  StoreSearchPage({super.key});
+  const StoreSearchPage({super.key});
 
   @override
   State<StoreSearchPage> createState() => _StoreSearchPageState();
@@ -37,21 +37,21 @@ class _StoreSearchPageState extends State<StoreSearchPage> {
     return Scaffold(
       body: SafeArea(
           child: Padding(
-        padding: EdgeInsets.all(30),
+        padding: const EdgeInsets.all(30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Text(
+            const Text(
               "Search Stores",
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             StoreSearchBar(
               textEditingController: _textEditingController,
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Expanded(

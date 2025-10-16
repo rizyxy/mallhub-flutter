@@ -30,13 +30,13 @@ class StoreSearchBlocConsumer extends StatelessWidget {
         if (state is StoreSearchLoading) {
           return Center(
               child: Padding(
-            padding: EdgeInsets.all(30),
+            padding: const EdgeInsets.all(30),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                CircularProgressIndicator(),
-                SizedBox(
+                const CircularProgressIndicator(),
+                const SizedBox(
                   height: 10,
                 ),
                 Text("Searching for ${textEditingController.value.text}")
@@ -108,13 +108,13 @@ class StoreSearchBlocConsumer extends StatelessWidget {
               ),
             );
           } else {
-            return Center(
+            return const Center(
               child: Text("No matching stores found"),
             );
           }
         }
 
-        return Center(
+        return const Center(
           child: Text("You haven't searched anything"),
         );
       },

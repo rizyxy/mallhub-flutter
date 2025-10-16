@@ -36,7 +36,7 @@ class ProductPage extends StatelessWidget {
                               builder: (context) =>
                                   BlocProvider<ProductSearchBloc>(
                                     create: (context) => ProductSearchBloc(),
-                                    child: ProductSearchPage(),
+                                    child: const ProductSearchPage(),
                                   )));
                     },
                     borderRadius: BorderRadius.circular(10),

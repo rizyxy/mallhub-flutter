@@ -37,21 +37,21 @@ class _ProductSearchPageState extends State<ProductSearchPage> {
     return Scaffold(
       body: SafeArea(
           child: Padding(
-        padding: EdgeInsets.all(30),
+        padding: const EdgeInsets.all(30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Text(
+            const Text(
               "Search Products",
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             ProductSearchBar(
               textEditingController: _textEditingController,
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Expanded(
