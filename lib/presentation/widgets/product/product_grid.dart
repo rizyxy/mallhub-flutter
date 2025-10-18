@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:mallhub_flutter/data/model/product.dart';
 import 'package:mallhub_flutter/presentation/bloc/product_bloc/product_bloc.dart';
 import 'package:mallhub_flutter/presentation/views/product_page/product_detail_page.dart';
@@ -64,6 +65,8 @@ class ProductGrid extends StatelessWidget {
                         ProductDetailPage(productModel: products[index])));
           },
           child: ItemCard(
+              itemThumbnail:
+                  "${dotenv.get('SERVER_STORAGE')}/${products[index].productImages[0]}",
               itemName: products[index].name,
               itemDescription: products[index].store.name),
         );

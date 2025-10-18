@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:mallhub_flutter/data/model/store.dart';
 import 'package:mallhub_flutter/presentation/bloc/store_bloc/store_bloc.dart';
 import 'package:mallhub_flutter/presentation/views/store_page/store_catalog_page.dart';
@@ -65,6 +66,8 @@ class StoreGrid extends StatelessWidget {
                         StoreCatalogPage(storeModel: stores[index])));
           },
           child: ItemCard(
+              itemThumbnail:
+                  "${dotenv.get('SERVER_STORAGE')}/${stores[index].logoUrl}",
               itemName: stores[index].name,
               itemDescription: stores[index].floor.name),
         );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:mallhub_flutter/presentation/bloc/floor_bloc/floor_bloc.dart';
 import 'package:mallhub_flutter/presentation/bloc/product_bloc/product_bloc.dart';
 import 'package:mallhub_flutter/presentation/bloc/store_bloc/store_bloc.dart';
@@ -162,6 +163,8 @@ class HomePage extends StatelessWidget {
                                             .productPaginated.data[index])));
                           },
                           child: ItemCard(
+                              itemThumbnail:
+                                  "${dotenv.get('SERVER_STORAGE')}/${state.productPaginated.data[index].productImages[0]}",
                               itemName: state.productPaginated.data[index].name,
                               itemDescription: state
                                   .productPaginated.data[index].store.name),
@@ -242,6 +245,8 @@ class HomePage extends StatelessWidget {
                                             state.storePaginated.data[index])));
                           },
                           child: ItemCard(
+                              itemThumbnail:
+                                  "${dotenv.get('SERVER_STORAGE')}/${state.storePaginated.data[index].logoUrl}",
                               itemName: state.storePaginated.data[index].name,
                               itemDescription:
                                   state.storePaginated.data[index].floor.name),

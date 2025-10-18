@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:mallhub_flutter/data/model/product.dart';
 import 'package:mallhub_flutter/presentation/views/store_page/store_catalog_page.dart';
 
@@ -19,7 +20,28 @@ class ProductDetailPage extends StatelessWidget {
             children: <Widget>[
               Container(
                 height: 400,
-                color: Colors.grey.shade200,
+                child: Image.network(
+                  errorBuilder: (context, child, stackTrace) {
+                    return Placeholder();
+                  },
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) {
+                      return child;
+                    }
+
+                    return Center(
+                      child: CircularProgressIndicator(
+                        // Optionally calculate the progress percentage
+                        value: loadingProgress?.expectedTotalBytes != null
+                            ? loadingProgress!.cumulativeBytesLoaded /
+                                loadingProgress.expectedTotalBytes!
+                            : null,
+                      ),
+                    );
+                  },
+                  "${dotenv.get('SERVER_STORAGE')}/${productModel.productImages[0]}",
+                  fit: BoxFit.cover,
+                ),
               ),
               const SizedBox(
                 height: 20,

@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 
 class ItemCard extends StatelessWidget {
   const ItemCard(
-      {super.key, required this.itemName, required this.itemDescription});
+      {super.key,
+      required this.itemName,
+      required this.itemDescription,
+      this.itemThumbnail});
 
+  final String? itemThumbnail;
   final String itemName;
   final String itemDescription;
 
@@ -14,9 +18,33 @@ class ItemCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Expanded(
-              child: Container(
-            color: Colors.grey.shade200,
-          )),
+              child: itemThumbnail != null
+                  ? Image.network(
+                      itemThumbnail!,
+                      errorBuilder: (context, child, stackTrace) {
+                        return Placeholder();
+                      },
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if (loadingProgress == null) {
+                          return child;
+                        }
+
+                        return Center(
+                          child: CircularProgressIndicator(
+                            // Optionally calculate the progress percentage
+                            value: loadingProgress?.expectedTotalBytes != null
+                                ? loadingProgress!.cumulativeBytesLoaded /
+                                    loadingProgress.expectedTotalBytes!
+                                : null,
+                          ),
+                        );
+                      },
+                      fit: BoxFit.cover,
+                      headers: {'ngrok-skip-browser-warning': 'true'},
+                    )
+                  : Container(
+                      color: Colors.grey.shade200,
+                    )),
           const SizedBox(
             height: 10,
           ),
