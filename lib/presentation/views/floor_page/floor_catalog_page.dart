@@ -15,6 +15,7 @@ class FloorCatalogPage extends StatelessWidget {
       create: (context) =>
           FloorCatalogBloc()..add(FetchFloorCatalog(floorId: floor.id)),
       child: Scaffold(
+        backgroundColor: Colors.white,
         body: SafeArea(
             child: Padding(
           padding: const EdgeInsets.all(30),
